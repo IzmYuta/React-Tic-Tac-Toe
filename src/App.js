@@ -14,7 +14,10 @@ export default function Board() {
   return (
     <React.Fragment>
       <div className="board-row">
-        <Square value={squares[0]} onSquareClick={handleClick} />
+        {/* onSquareClick={handleClick(0)}のように呼び出すとうまく動作しない */}
+        {/* これは、ボードのレンダリング時に、handleClick関数が呼び出されてしまい、状態変化によってレンダリングが無限に行われてしまうことが原因 */}
+
+        <Square value={squares[0]} onSquareClick={handleClick(0)} />
         <Square value={squares[1]} onSquareClick={handleClick} />
         <Square value={squares[2]} onSquareClick={handleClick} />
       </div>
