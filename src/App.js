@@ -1,50 +1,33 @@
 import React, { useState } from "react";
 
-// App.jsではコンポーネントを作成している
-// コンポーネントとは、ユーザーインターフェースを構成するための部品のようなもの
-// コンポーネントでは、UI要素のレンダリング、イベントの処理、状態の管理などを行う
-
-// exportでコンポーネントを外部のファイルから読み込めるようにする
-// defaultで宣言しているものはメイン関数として扱われる
 export default function Board() {
-  // JSX要素と呼ばれる、HTMLタグとJavaScriptのコードを組み合わせたものを返す
-  // 複数のJSX要素を返すときは、フラグメントを使う
-  // react nativeでは短縮系の<>は使えない
+  // 各マスの状態を管理するための配列を作成
+  const [squares, setSquares] = useState(Array(9).fill(null));
   return (
     <React.Fragment>
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value={squares[0]} />
+        <Square value={squares[1]} />
+        <Square value={squares[2]} />
       </div>
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value={squares[3]} />
+        <Square value={squares[4]} />
+        <Square value={squares[5]} />
       </div>
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value={squares[6]} />
+        <Square value={squares[7]} />
+        <Square value={squares[8]} />
       </div>
+
     </React.Fragment>
   );
 }
 
-function Square() {
-  // useStateを使うことで、コンポーネントの状態を記憶することができる
-  // useStateの引数はvalueの初期値(=null)となる
-  const [value, setValue] = useState(null);
-  function handleClick() {
-    // setValueを使うことで、valueの値を変更することができる
-    setValue("X");
-  }
-
+function Square({ value }) {
   return (
-    <button
-      className="square"
-      onClick={handleClick}
-    >
+    <button className="square">
       {value}
     </button>
   );
