@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // App.jsではコンポーネントを作成している
 // コンポーネントとは、ユーザーインターフェースを構成するための部品のようなもの
@@ -13,26 +13,39 @@ export default function Board() {
   return (
     <React.Fragment>
       <div className="board-row">
-        <Square value="1" />
-        <Square value="2" />
-        <Square value="3" />
+        <Square />
+        <Square />
+        <Square />
       </div>
       <div className="board-row">
-        <Square value="4" />
-        <Square value="5" />
-        <Square value="6" />
+        <Square />
+        <Square />
+        <Square />
       </div>
       <div className="board-row">
-        <Square value="7" />
-        <Square value="8" />
-        <Square value="9" />
+        <Square />
+        <Square />
+        <Square />
       </div>
     </React.Fragment>
   );
 }
 
-// propsを利用して、コンポーネントに値を渡すことができる
-// ここでは、valueという名前で値を渡している
-function Square({ value }) {
-  return <button className="square">{value}</button>;
+function Square() {
+  // useStateを使うことで、コンポーネントの状態を記憶することができる
+  // useStateの引数はvalueの初期値(=null)となる
+  const [value, setValue] = useState(null);
+  function handleClick() {
+    // setValueを使うことで、valueの値を変更することができる
+    setValue("X");
+  }
+
+  return (
+    <button
+      className="square"
+      onClick={handleClick}
+    >
+      {value}
+    </button>
+  );
 }
